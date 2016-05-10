@@ -30,7 +30,7 @@ while getopts "c:p:k:u:b:" opt; do
   esac
 done
 
-if [ -z "${username}" ] || [ -z "${password}" ] || [ -z "${gerrit_prefix} ]; then
+if [ -z "${username}" ] || [ -z "${password}" ] || [ -z "${gerrit_prefix}" ]; then
     echo "Parameters missing"
     usage
 fi
