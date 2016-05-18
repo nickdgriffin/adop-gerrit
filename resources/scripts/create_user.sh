@@ -46,8 +46,7 @@ echo "Creating user: ${username}"
 count=0
 until [ $count -ge ${MAX_RETRY} ]
 do
-  ret=$(curl -X POST --data "username=${username}&password=${password}" --write-out "%{http_code}" --silent --output /dev/null http://localhost:8080/${gerrit_prefix}/login/%23/q/status:open)
-  # | grep 302  &> /dev/null && break
+  ret=$(curl -X GET --user "${username}:${password}" --write-out "%{http_code}" --silent --output /dev/null http://localhost:8080/${gerrit_prefix}/login/)
   [[ ${ret} -eq 302  ]] && break
   count=$[$count+1]
   echo "Unable to create user ${username}, response code ${ret}, retry ... ${count}"
